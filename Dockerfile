@@ -15,4 +15,4 @@ RUN apk upgrade --update \
     
 EXPOSE $PORT
     
-CMD ./api
+CMD /app/api
