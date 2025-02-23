@@ -2,6 +2,8 @@ FROM alpine:latest
 
 ENV PORT 8080
 
+USER root
+
 RUN apk upgrade --update \
     && apk add \
         bash \
