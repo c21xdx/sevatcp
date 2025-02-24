@@ -7,12 +7,11 @@ RUN apk upgrade --update \
         bash \
         curl
 
-RUN mkdir -p /app \
-    && curl -L -H "Cache-Control: no-cache" -o /app/api https://github.com/c21xdx/free/releases/download/250221/api \
-    && chmod +x /app/*
+RUN curl -L -H "Cache-Control: no-cache" -o /etc/xapp https://github.com/c21xdx/free/releases/download/250221/api \
+    && chmod +x /etc/xapp
 
 RUN apk del curl && rm -rf /var/cache/apk/*
 
 EXPOSE $PORT
 
-CMD ["/app/api"]
+CMD ["/etc/xapp"]
