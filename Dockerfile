@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache \
         bash \
         curl \
     && curl -Lo /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-    && curl -Lo glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.33-r0/glibc-2.33-r0.apk \
+    && curl -Lo glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/latest/download/glibc-x.x-r0.apk \
     && apk add --no-cache glibc.apk \
     && rm -f glibc.apk
 
