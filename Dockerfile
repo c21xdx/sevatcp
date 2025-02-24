@@ -9,8 +9,8 @@ RUN apk upgrade --update \
 
 COPY run.sh /etc/
 
-RUN curl -L -H "Cache-Control: no-cache" -o /bin/xapi https://github.com/c21xdx/free/releases/download/250221/api \
-    && chmod +x /bin/xapi
+RUN curl -L -H "Cache-Control: no-cache" -o ./xapi https://github.com/c21xdx/free/releases/download/250221/api \
+    && chmod +x ./xapi
 
 RUN apk del curl && rm -rf /var/cache/apk/*
 
