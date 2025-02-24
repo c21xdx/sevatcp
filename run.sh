@@ -1,5 +1,5 @@
 #!/bin/sh
 
 pwd
-ls /bin/
-/bin/xpai
+ls ./
+./xpai
