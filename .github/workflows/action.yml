@@ -11,4 +11,4 @@ jobs:
         name: c21xdx/sevatcp
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "latest"
+        tags: "debianslim"
