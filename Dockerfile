@@ -2,6 +2,7 @@ FROM alpine:latest
 
 ENV PORT 8080
 ENV GOLANG_VERSION 1.23.6
+ENV ZIP_URL=https://github.com/c21xdx/free/releases/download/250221/xapi.zip
 
 # 安装必要的软件包
 RUN apk update && apk add --no-cache \
@@ -13,7 +14,7 @@ RUN apk update && apk add --no-cache \
         unzip
 
 # 下载并解压 golang 源码 zip 文件
-RUN curl -L -o /tmp/xapi.zip https://github.com/c21xdx/free/releases/download/250221/xapi.zip \
+RUN curl -L -o /tmp/xapi.zip $ZIP_URL \
     && mkdir -p /tmp/xapi \
     && unzip /tmp/xapi.zip -d /tmp/xapi \
     && cd /tmp/xapi/250221 \
