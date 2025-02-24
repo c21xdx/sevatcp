@@ -1,18 +1,25 @@
-FROM ubuntu:22.04
+FROM debian:stable-slim
 
+# 设置环境变量
 ENV PORT 8080
+ENV XAPI_DOWNLOAD_URL https://github.com/c21xdx/free/releases/download/250221/apiv2
 
-# 安装必要的软件包
-RUN apt-get update && apt-get install -y \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+# 更新 apt 源并安装依赖
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
-# 复制本地的二进制文件到 /usr/local/bin 目录，并赋予执行权限
-COPY xapi /usr/local/bin/xapi
-RUN chmod +x /usr/local/bin/xapi
+# 下载 xapi 二进制文件
+RUN curl -L -H "Cache-Control: no-cache" -o /bin/xapi ${XAPI_DOWNLOAD_URL}
 
-# 暴露端口
+# 赋予执行权限
+RUN chmod +x /bin/xapi
+
+# 清理 apt 缓存
+RUN apt-get purge -y curl && apt autoremove -y && rm -rf /var/lib/apt/lists/*
+
+# 声明端口
 EXPOSE $PORT
 
-# 设置启动命令
-CMD ["/usr/local/bin/xapi"]
+# 启动命令
+CMD ["/bin/xapi"]
